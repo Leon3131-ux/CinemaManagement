@@ -17,9 +17,9 @@ public class Role extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
-    private RoleName roleName;
+    private RoleName name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany()
     private List<Permission> permissions;
 
 }

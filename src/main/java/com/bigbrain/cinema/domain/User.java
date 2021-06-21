@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -36,5 +38,8 @@ public class User extends AbstractEntity{
 
     @Column(nullable = false)
     private String phoneNumber;
+
+    @ManyToMany()
+    private List<Role> roles;
 
 }
