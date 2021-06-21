@@ -5,20 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class AgeRating extends AbstractEntity{
+public class Role extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
-    private AgeRatingName ageRatingName;
+    private RoleName roleName;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Permission> permissions;
 
 }

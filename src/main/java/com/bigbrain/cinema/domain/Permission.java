@@ -15,10 +15,10 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AgeRating extends AbstractEntity{
+public class Permission extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
-    @Column(unique = true, nullable = false)
-    private AgeRatingName ageRatingName;
+    @Column(nullable = false, unique = true)
+    private PermissionName name;
 
 }
