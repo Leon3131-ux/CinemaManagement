@@ -4,11 +4,14 @@ import com.bigbrain.cinema.converter.MovieConverter;
 import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.dto.SaveMovieDto;
 import com.bigbrain.cinema.service.MovieService;
+import com.bigbrain.cinema.validation.MovieValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +22,11 @@ public class MovieController {
 
     private final MovieService movieService;
     private final MovieConverter movieConverter;
+    private final MovieValidator movieValidator;
+
+
+    @InitBinder("fridgeDto")
+    public void initFridgeDtoBinder(WebDataBinder binder){binder.setValidator(movieValidator);}
 
     @RequestMapping(value = "/api/movie/create", method = RequestMethod.POST)
     @PreAuthorize("hasPermission('CREATE')")
