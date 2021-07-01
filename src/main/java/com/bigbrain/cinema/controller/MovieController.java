@@ -2,7 +2,6 @@ package com.bigbrain.cinema.controller;
 
 import com.bigbrain.cinema.converter.MovieConverter;
 import com.bigbrain.cinema.domain.Movie;
-import com.bigbrain.cinema.dto.ReturnMovieDto;
 import com.bigbrain.cinema.dto.SaveMovieDto;
 import com.bigbrain.cinema.service.MovieService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ public class MovieController {
 
     @RequestMapping(value = "/api/movie/create", method = RequestMethod.POST)
     @PreAuthorize("hasPermission('CREATE')")
-    public ResponseEntity<ReturnMovieDto> createMovie(@RequestBody SaveMovieDto saveMovieDto){
+    public ResponseEntity<?> createMovie(@RequestBody SaveMovieDto saveMovieDto){
         Movie movie;
         if(saveMovieDto.getId() != 0){
             Movie oldMovie = movieService.getByIdOrThrowException(saveMovieDto.getId());
@@ -32,6 +31,11 @@ public class MovieController {
             movie = movieConverter.toEntity(saveMovieDto);
         }
         return new ResponseEntity<>(movieConverter.toDto(movieService.save(movie)), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/movie/get", method = RequestMethod.GET)
+    public ResponseEntity<?> getMovies(){
+        return new ResponseEntity<>(movieService.getAll(), HttpStatus.OK);
     }
 
 }

@@ -6,6 +6,8 @@ import com.bigbrain.cinema.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class MovieService {
@@ -27,6 +29,10 @@ public class MovieService {
 
     public Movie save(Movie movie){
         return movieRepository.save(movie);
+    }
+
+    public List<Movie> getAll(){
+        return movieRepository.findAll();
     }
 
 }
