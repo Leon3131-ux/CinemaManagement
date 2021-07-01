@@ -21,10 +21,10 @@ public class Hall extends AbstractEntity{
     private String name;
 
     @Column(nullable = false)
-    private Integer seatRows;
+    private int seatRows;
 
     @Column(nullable = false)
-    private Integer seatColumns;
+    private int seatColumns;
 
     @OneToMany(mappedBy = "hall")
     private List<Seat> seats;

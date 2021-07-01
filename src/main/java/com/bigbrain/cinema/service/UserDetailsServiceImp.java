@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +34,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
     public List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        List<Permission> permissions = user.getRoles().stream().flatMap(role -> role.getPermissions().stream()).collect(Collectors.toList());
+        List<Permission> permissions = user.getPermissions();
         for (Permission permission : permissions){
             grantedAuthorities.add(new SimpleGrantedAuthority(permission.getName().toString()));
         }

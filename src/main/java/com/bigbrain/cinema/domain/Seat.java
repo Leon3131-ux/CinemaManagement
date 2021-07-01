@@ -21,9 +21,9 @@ public class Seat extends AbstractEntity{
     private SeatType seatType;
 
     @Column(nullable = false)
-    private Integer seatColumn;
+    private int seatColumn;
 
     @Column(nullable = false)
-    private Integer seatRow;
+    private int seatRow;
 
 }

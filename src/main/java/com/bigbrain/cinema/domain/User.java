@@ -40,6 +40,6 @@ public class User extends AbstractEntity{
     private String phoneNumber;
 
     @ManyToMany()
-    private List<Role> roles;
+    private List<Permission> permissions;
 
 }

@@ -17,13 +17,13 @@ class AbstractEntity {
     @JsonIgnore
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     AbstractEntity() {
-        this.id = null;
+        this.id = 0;
     }
 
-    AbstractEntity(Long id) {
+    AbstractEntity(long id) {
         this.id = id;
     }
 }
