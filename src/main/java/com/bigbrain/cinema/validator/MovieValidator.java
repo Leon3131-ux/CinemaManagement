@@ -1,4 +1,4 @@
-package com.bigbrain.cinema.validation;
+package com.bigbrain.cinema.validator;
 
 import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.dto.SaveMovieDto;

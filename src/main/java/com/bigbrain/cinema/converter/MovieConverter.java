@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class MovieConverter {
 
     private final AgeRatingService ageRatingService;
+    public final AgeRatingConverter ageRatingConverter;
 
     public Movie toEntity(SaveMovieDto saveMovieDto){
         Movie movie = new Movie();
@@ -29,7 +30,7 @@ public class MovieConverter {
                 movie.getName(),
                 movie.getDescription(),
                 movie.getRuntime(),
-                movie.getAgeRating().getId()
+                ageRatingConverter.toDto(movie.getAgeRating())
         );
     }
 

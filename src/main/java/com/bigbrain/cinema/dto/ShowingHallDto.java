@@ -4,19 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-public class ReturnMovieDto {
+public class ShowingHallDto {
 
     private long id;
 
     private String name;
-
-    private String description;
-
-    private int runtime;
-
-    private AgeRatingDto ageRating;
 
 }

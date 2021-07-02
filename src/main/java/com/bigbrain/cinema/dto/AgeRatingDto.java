@@ -1,0 +1,16 @@
+package com.bigbrain.cinema.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Getter
+@Setter
+public class AgeRatingDto {
+
+    private long id;
+
+    private String ageRatingName;
+
+}
