@@ -44,7 +44,7 @@ public class MovieController {
 
     @RequestMapping(value = "/api/movie/get", method = RequestMethod.GET)
     public ResponseEntity<?> getMovies(){
-        return new ResponseEntity<>(movieService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(movieConverter.convertAllToDto(movieService.getAll()), HttpStatus.OK);
     }
 
 }

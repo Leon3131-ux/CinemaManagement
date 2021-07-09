@@ -8,6 +8,9 @@ import com.bigbrain.cinema.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class ShowingConverter {
@@ -32,6 +35,10 @@ public class ShowingConverter {
                 hallConverter.toShowingHallDto(showing.getHall()),
                 showing.getDateTime()
         );
+    }
+
+    public List<ReturnShowingDto> convertAllToDto(List<Showing> showings){
+        return showings.stream().map(this::toDto).collect(Collectors.toList());
     }
 
 }

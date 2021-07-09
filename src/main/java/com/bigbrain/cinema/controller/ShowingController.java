@@ -39,4 +39,9 @@ public class ShowingController {
         return new ResponseEntity<>(showingConverter.toDto(showingService.save(showing)), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/api/showing/get", method = RequestMethod.GET)
+    public ResponseEntity<?> getShowings(){
+        return new ResponseEntity<>(showingConverter.convertAllToDto(showingService.getAll()), HttpStatus.OK);
+    }
+
 }

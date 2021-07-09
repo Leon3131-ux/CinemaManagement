@@ -7,6 +7,9 @@ import com.bigbrain.cinema.service.AgeRatingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class MovieConverter {
@@ -32,6 +35,10 @@ public class MovieConverter {
                 movie.getRuntime(),
                 ageRatingConverter.toDto(movie.getAgeRating())
         );
+    }
+
+    public List<ReturnMovieDto> convertAllToDto(List<Movie> movies){
+        return movies.stream().map(this::toDto).collect(Collectors.toList());
     }
 
 }

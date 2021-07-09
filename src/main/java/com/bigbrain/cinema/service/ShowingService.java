@@ -6,6 +6,8 @@ import com.bigbrain.cinema.repository.ShowingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ShowingService {
@@ -27,6 +29,10 @@ public class ShowingService {
 
     public Showing save(Showing showing){
         return showingRepository.save(showing);
+    }
+
+    public List<Showing> getAll(){
+        return showingRepository.findAll();
     }
 
 }
