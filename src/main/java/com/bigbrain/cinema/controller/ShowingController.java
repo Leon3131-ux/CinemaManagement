@@ -24,8 +24,8 @@ public class ShowingController {
     private final ShowingService showingService;
     private final ShowingConverter showingConverter;
 
-    @InitBinder("fridgeDto")
-    public void initFridgeDtoBinder(WebDataBinder binder){binder.setValidator(showingValidator);}
+    @InitBinder("saveShowingDto")
+    public void setBinder(WebDataBinder binder){binder.setValidator(showingValidator);}
 
     @RequestMapping(value = "/api/showing/create", method = RequestMethod.POST)
     public ResponseEntity<?> createShowing(@RequestBody @Validated SaveShowingDto saveShowingDto){

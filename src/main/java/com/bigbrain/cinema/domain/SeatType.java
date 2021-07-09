@@ -17,6 +17,6 @@ public class SeatType extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
-    private SeatTypeName seatTypeName;
+    private SeatTypeName name;
 
 }

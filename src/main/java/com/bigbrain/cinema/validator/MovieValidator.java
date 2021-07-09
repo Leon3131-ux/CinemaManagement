@@ -39,7 +39,7 @@ public class MovieValidator implements Validator {
             List<Movie> moviesWithSameName = movieRepository.findAllByName(dto.getName());
             if(!moviesWithSameName.isEmpty()){
                 if(moviesWithSameName.size() > 1 && moviesWithSameName.get(0).getId() != dto.getId()){
-                    errors.rejectValue("name", "errors.movie.name.alreadyUsed");
+                    errors.rejectValue("name", "errors.movie.title.alreadyUsed");
                 }
             }
         }else {

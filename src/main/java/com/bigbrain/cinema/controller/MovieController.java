@@ -26,8 +26,8 @@ public class MovieController {
     private final MovieValidator movieValidator;
 
 
-    @InitBinder("fridgeDto")
-    public void initFridgeDtoBinder(WebDataBinder binder){binder.setValidator(movieValidator);}
+    @InitBinder("saveMovieDto")
+    public void setBinder(WebDataBinder binder){binder.setValidator(movieValidator);}
 
     @RequestMapping(value = "/api/movie/create", method = RequestMethod.POST)
     @PreAuthorize("hasPermission('CREATE')")
