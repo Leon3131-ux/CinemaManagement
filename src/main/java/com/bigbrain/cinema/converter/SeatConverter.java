@@ -1,7 +1,9 @@
 package com.bigbrain.cinema.converter;
 
 import com.bigbrain.cinema.domain.Seat;
-import com.bigbrain.cinema.dto.ReturnSeatDto;
+import com.bigbrain.cinema.dto.SeatDto;
+import com.bigbrain.cinema.service.HallService;
+import com.bigbrain.cinema.service.SeatTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +14,28 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class SeatConverter {
 
-    public ReturnSeatDto toDto(Seat seat){
-        return new ReturnSeatDto(
-                seat.getId(),
+    private final SeatTypeService seatTypeService;
+    private final HallService hallService;
+
+    public SeatDto toDto(Seat seat){
+        return new SeatDto(
                 seat.getHall().getId(),
-                seat.getSeatType().getName().toString(),
+                seat.getSeatType().getId(),
                 seat.getSeatColumn(),
                 seat.getSeatRow()
         );
     }
 
-    public List<ReturnSeatDto> convertAllToDto(List<Seat> seats){
+    public Seat toEntity(SeatDto seatDto){
+        return new Seat(
+                hallService.getByIdOrThrowException(seatDto.getHallId()),
+                seatTypeService.getByIdOrThrowException(seatDto.getSeatTypeId()),
+                seatDto.getSeatColumn(),
+                seatDto.getSeatRow()
+        );
+    }
+
+    public List<SeatDto> convertAllToDto(List<Seat> seats){
         return seats.stream().map(this::toDto).collect(Collectors.toList());
     }
 

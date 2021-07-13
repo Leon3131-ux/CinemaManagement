@@ -8,6 +8,7 @@ import com.bigbrain.cinema.validator.ShowingValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,8 +28,9 @@ public class ShowingController {
     @InitBinder("saveShowingDto")
     public void setBinder(WebDataBinder binder){binder.setValidator(showingValidator);}
 
-    @RequestMapping(value = "/api/showing/create", method = RequestMethod.POST)
-    public ResponseEntity<?> createShowing(@RequestBody @Validated SaveShowingDto saveShowingDto){
+    @RequestMapping(value = "/api/showing/save", method = RequestMethod.POST)
+    @PreAuthorize("hasPermission('MANAGE_SHOWINGS')")
+    public ResponseEntity<?> saveShowing(@RequestBody @Validated SaveShowingDto saveShowingDto){
         Showing showing;
         if(saveShowingDto.getId() != 0){
             Showing oldShowing = showingService.getByIdOrThrowException(saveShowingDto.getId());

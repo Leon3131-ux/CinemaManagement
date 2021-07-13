@@ -8,6 +8,7 @@ import com.bigbrain.cinema.validator.HallValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,8 +28,9 @@ public class HallController {
     @InitBinder("saveHallDto")
     public void setBinder(WebDataBinder binder){binder.setValidator(hallValidator);}
 
-    @RequestMapping(value = "/api/hall/create", method = RequestMethod.POST)
-    public ResponseEntity<?> createHall(@RequestBody @Validated SaveHallDto saveHallDto){
+    @RequestMapping(value = "/api/hall/save", method = RequestMethod.POST)
+    @PreAuthorize("hasPermission('MANAGE_CINEMA')")
+    public ResponseEntity<?> saveHall(@RequestBody @Validated SaveHallDto saveHallDto){
         Hall hall;
         if(saveHallDto.getId() != 0){
             Hall oldHall = hallService.getByIdOrThrowException(saveHallDto.getId());

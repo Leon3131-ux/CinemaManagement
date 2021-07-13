@@ -7,13 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ReturnSeatDto {
-
-    private long id;
+public class SeatDto {
 
     private long hallId;
 
-    private String seatType;
+    private long seatTypeId;
 
     private int seatColumn;
 

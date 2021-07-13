@@ -29,9 +29,9 @@ public class MovieController {
     @InitBinder("saveMovieDto")
     public void setBinder(WebDataBinder binder){binder.setValidator(movieValidator);}
 
-    @RequestMapping(value = "/api/movie/create", method = RequestMethod.POST)
-    @PreAuthorize("hasPermission('CREATE')")
-    public ResponseEntity<?> createMovie(@RequestBody @Validated SaveMovieDto saveMovieDto){
+    @RequestMapping(value = "/api/movie/save", method = RequestMethod.POST)
+    @PreAuthorize("hasPermission('MANAGE_MOVIES')")
+    public ResponseEntity<?> saveMovie(@RequestBody @Validated SaveMovieDto saveMovieDto){
         Movie movie;
         if(saveMovieDto.getId() != 0){
             Movie oldMovie = movieService.getByIdOrThrowException(saveMovieDto.getId());
