@@ -1,7 +1,7 @@
 package com.bigbrain.cinema.validator;
 
 import com.bigbrain.cinema.domain.Hall;
-import com.bigbrain.cinema.dto.SeatDto;
+import com.bigbrain.cinema.dto.SaveSeatDto;
 import com.bigbrain.cinema.repository.HallRepository;
 import com.bigbrain.cinema.repository.SeatTypeRepository;
 import lombok.AllArgsConstructor;
@@ -20,12 +20,12 @@ public class SeatValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz.isAssignableFrom(SeatDto.class);
+        return clazz.isAssignableFrom(SaveSeatDto.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        SeatDto dto = (SeatDto) target;
+        SaveSeatDto dto = (SaveSeatDto) target;
 
         Optional<Hall> optionalHall = hallRepository.findById(dto.getHallId());
         if(optionalHall.isEmpty()){

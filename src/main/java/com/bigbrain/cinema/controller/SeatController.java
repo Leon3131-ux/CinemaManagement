@@ -1,7 +1,7 @@
 package com.bigbrain.cinema.controller;
 
 import com.bigbrain.cinema.converter.SeatConverter;
-import com.bigbrain.cinema.dto.SeatDto;
+import com.bigbrain.cinema.dto.SaveSeatDto;
 import com.bigbrain.cinema.service.SeatService;
 import com.bigbrain.cinema.validator.SeatValidator;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,8 @@ public class SeatController {
 
     @RequestMapping(value = "/api/seat/save", method = RequestMethod.POST)
     @PreAuthorize("hasPermission('MANAGE_CINEMA')")
-    public ResponseEntity<?> saveSeat(@RequestBody @Validated SeatDto seatDto){
-        return new ResponseEntity<>(seatConverter.toDto(seatService.save(seatConverter.toEntity(seatDto))), HttpStatus.OK);
+    public ResponseEntity<?> saveSeat(@RequestBody @Validated SaveSeatDto saveSeatDto){
+        return new ResponseEntity<>(seatConverter.toDto(seatService.save(seatConverter.toEntity(saveSeatDto))), HttpStatus.OK);
     }
 
 }

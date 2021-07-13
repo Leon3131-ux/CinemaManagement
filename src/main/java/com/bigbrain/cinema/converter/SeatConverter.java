@@ -1,7 +1,8 @@
 package com.bigbrain.cinema.converter;
 
 import com.bigbrain.cinema.domain.Seat;
-import com.bigbrain.cinema.dto.SeatDto;
+import com.bigbrain.cinema.dto.ReturnSeatDto;
+import com.bigbrain.cinema.dto.SaveSeatDto;
 import com.bigbrain.cinema.service.HallService;
 import com.bigbrain.cinema.service.SeatTypeService;
 import lombok.AllArgsConstructor;
@@ -16,26 +17,27 @@ public class SeatConverter {
 
     private final SeatTypeService seatTypeService;
     private final HallService hallService;
+    private final SeatTypeConverter seatTypeConverter;
 
-    public SeatDto toDto(Seat seat){
-        return new SeatDto(
+    public ReturnSeatDto toDto(Seat seat){
+        return new ReturnSeatDto(
                 seat.getHall().getId(),
-                seat.getSeatType().getId(),
+                seatTypeConverter.toDto(seat.getSeatType()),
                 seat.getSeatColumn(),
                 seat.getSeatRow()
         );
     }
 
-    public Seat toEntity(SeatDto seatDto){
+    public Seat toEntity(SaveSeatDto saveSeatDto){
         return new Seat(
-                hallService.getByIdOrThrowException(seatDto.getHallId()),
-                seatTypeService.getByIdOrThrowException(seatDto.getSeatTypeId()),
-                seatDto.getSeatColumn(),
-                seatDto.getSeatRow()
+                hallService.getByIdOrThrowException(saveSeatDto.getHallId()),
+                seatTypeService.getByIdOrThrowException(saveSeatDto.getSeatTypeId()),
+                saveSeatDto.getSeatColumn(),
+                saveSeatDto.getSeatRow()
         );
     }
 
-    public List<SeatDto> convertAllToDto(List<Seat> seats){
+    public List<ReturnSeatDto> convertAllToDto(List<Seat> seats){
         return seats.stream().map(this::toDto).collect(Collectors.toList());
     }
 

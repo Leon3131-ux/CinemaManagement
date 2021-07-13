@@ -7,11 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SeatDto {
+public class ReturnSeatDto {
 
     private long hallId;
 
-    private long seatTypeId;
+    private SeatTypeDto seatTypeDto;
 
     private int seatColumn;
 

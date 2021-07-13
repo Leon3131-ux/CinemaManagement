@@ -1,6 +1,5 @@
 package com.bigbrain.cinema.dto;
 
-import com.bigbrain.cinema.domain.Seat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +19,6 @@ public class ReturnHallDto {
 
     private int seatColumns;
 
-    private List<SeatDto> seatsDtos;
+    private List<ReturnSeatDto> seatsDtos;
 
 }
