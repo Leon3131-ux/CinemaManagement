@@ -4,13 +4,20 @@ import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.dto.SaveMovieDto;
 import com.bigbrain.cinema.repository.MovieRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class MovieService {
+
+    @Value("${movie.image.path}")
+    private String movieImagePath;
 
     private final MovieRepository movieRepository;
     private final AgeRatingService ageRatingService;
@@ -33,6 +40,17 @@ public class MovieService {
 
     public List<Movie> getAll(){
         return movieRepository.findAll();
+    }
+
+    public byte[] getMovieImageBytes(long id){
+        File file = new File(movieImagePath + id);
+        byte[] imageBytes;
+        try{
+            imageBytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e){
+            throw new RuntimeException(e.getMessage());
+        }
+        return imageBytes;
     }
 
 }
