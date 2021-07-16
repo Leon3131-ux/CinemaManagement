@@ -3,9 +3,9 @@ package com.bigbrain.cinema.init;
 import com.bigbrain.cinema.domain.*;
 import com.bigbrain.cinema.repository.*;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,10 +20,16 @@ public class InitDatabase {
     private final AgeRatingRepository ageRatingRepository;
     private final MovieRepository movieRepository;
     private final ShowingRepository showingRepository;
+    private final PermissionRepository permissionRepository;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostConstruct
     private void initDb(){
-
+        initAgeRatings();
+        initSeatTypes();
+        List<Permission> permissions = initPermissions();
+        initAdminUser(permissions);
     }
 
     private Hall initHall(){
@@ -67,20 +73,36 @@ public class InitDatabase {
         return seats;
     }
 
-    private List<SeatType> initSeatTypes(){
-        List<SeatType> seatTypes = new ArrayList<>();
+    private void initSeatTypes(){
         for(SeatTypeName seatTypeName: SeatTypeName.values()){
-            seatTypes.add(seatTypeRepository.save(new SeatType(seatTypeName)));
+            seatTypeRepository.save(new SeatType(seatTypeName));
         }
-        return seatTypes;
     }
 
-    private List<AgeRating> initAgeRatings(){
-        List<AgeRating> ageRatings = new ArrayList<>();
+    private void initAgeRatings(){
         for(AgeRatingName ageRatingName: AgeRatingName.values()){
-            ageRatings.add(ageRatingRepository.save(new AgeRating(ageRatingName)));
+            ageRatingRepository.save(new AgeRating(ageRatingName));
         }
-        return ageRatings;
+    }
+
+    private List<Permission> initPermissions(){
+        List<Permission> permissions = new ArrayList<>();
+        for(PermissionName permissionName: PermissionName.values()){
+            permissions.add(permissionRepository.save(new Permission(permissionName)));
+        }
+        return permissions;
+    }
+
+    private void initAdminUser(List<Permission> permissions){
+        userRepository.save(new User(
+                "admin@email.com",
+                bCryptPasswordEncoder.encode("admin"),
+                "Admin",
+                "Admin",
+                "Adminstreet",
+                new Date(),
+                "00000000000",
+                permissions));
     }
 
 }

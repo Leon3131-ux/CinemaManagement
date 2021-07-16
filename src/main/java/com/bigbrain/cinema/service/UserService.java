@@ -2,11 +2,11 @@ package com.bigbrain.cinema.service;
 
 import com.bigbrain.cinema.domain.User;
 import com.bigbrain.cinema.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;

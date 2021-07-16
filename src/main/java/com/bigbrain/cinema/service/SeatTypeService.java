@@ -2,11 +2,11 @@ package com.bigbrain.cinema.service;
 
 import com.bigbrain.cinema.domain.SeatType;
 import com.bigbrain.cinema.repository.SeatTypeRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SeatTypeService {
 
     private final SeatTypeRepository seatTypeRepository;

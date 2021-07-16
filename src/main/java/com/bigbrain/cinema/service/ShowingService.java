@@ -4,13 +4,13 @@ import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.domain.Showing;
 import com.bigbrain.cinema.dto.SaveShowingDto;
 import com.bigbrain.cinema.repository.ShowingRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ShowingService {
 
     private final ShowingRepository showingRepository;

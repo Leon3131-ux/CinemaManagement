@@ -2,11 +2,11 @@ package com.bigbrain.cinema.service;
 
 import com.bigbrain.cinema.domain.AgeRating;
 import com.bigbrain.cinema.repository.AgeRatingRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AgeRatingService {
 
     private final AgeRatingRepository ageRatingRepository;

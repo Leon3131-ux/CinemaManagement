@@ -3,7 +3,7 @@ package com.bigbrain.cinema.service;
 import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.dto.SaveMovieDto;
 import com.bigbrain.cinema.repository.MovieRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MovieService {
 
     @Value("${movie.image.path}")
