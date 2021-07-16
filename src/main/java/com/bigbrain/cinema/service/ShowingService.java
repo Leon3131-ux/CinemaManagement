@@ -1,5 +1,6 @@
 package com.bigbrain.cinema.service;
 
+import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.domain.Showing;
 import com.bigbrain.cinema.dto.SaveShowingDto;
 import com.bigbrain.cinema.repository.ShowingRepository;
@@ -33,6 +34,10 @@ public class ShowingService {
 
     public List<Showing> getAll(){
         return showingRepository.findAll();
+    }
+
+    public List<Showing> getAllByMovie(Movie movie){
+        return showingRepository.findAllByMovie(movie);
     }
 
 }

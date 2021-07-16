@@ -1,6 +1,7 @@
 package com.bigbrain.cinema.controller;
 
 import com.bigbrain.cinema.converter.ShowingConverter;
+import com.bigbrain.cinema.domain.Movie;
 import com.bigbrain.cinema.domain.Showing;
 import com.bigbrain.cinema.dto.SaveShowingDto;
 import com.bigbrain.cinema.service.ShowingService;
@@ -12,10 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -44,6 +42,11 @@ public class ShowingController {
     @RequestMapping(value = "/api/showing/getAll", method = RequestMethod.GET)
     public ResponseEntity<?> getShowings(){
         return new ResponseEntity<>(showingConverter.convertAllToDto(showingService.getAll()), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/showing/getByMovie/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getShowingsByMovie(@PathVariable("id")Movie movie){
+        return new ResponseEntity<>(showingConverter.convertAllToDto(showingService.getAllByMovie(movie)), HttpStatus.OK);
     }
 
 }

@@ -21,6 +21,7 @@ public class SeatConverter {
 
     public ReturnSeatDto toDto(Seat seat){
         return new ReturnSeatDto(
+                seat.getId(),
                 seat.getHall().getId(),
                 seatTypeConverter.toDto(seat.getSeatType()),
                 seat.getSeatColumn(),

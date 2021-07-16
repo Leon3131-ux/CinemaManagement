@@ -24,7 +24,7 @@ public class SeatController {
     private final SeatService seatService;
     private final SeatConverter seatConverter;
 
-    @InitBinder("seatDto")
+    @InitBinder("saveSeatDto")
     public void setBinder(WebDataBinder binder){binder.setValidator(seatValidator);}
 
     @RequestMapping(value = "/api/seat/save", method = RequestMethod.POST)

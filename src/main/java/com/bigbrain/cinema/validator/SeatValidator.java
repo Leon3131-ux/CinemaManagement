@@ -32,10 +32,10 @@ public class SeatValidator implements Validator {
             errors.rejectValue("hallId", "errors.seat.hallId.invalid");
         }else {
             Hall hall = optionalHall.get();
-            if(hall.getSeatColumns() < dto.getSeatColumn() || dto.getSeatColumn() < 1){
+            if(hall.getSeatColumns() < dto.getSeatColumn() || dto.getSeatColumn() < 0){
                 errors.rejectValue("seatColumn", "errors.seat.seatColumn.invalid");
             }
-            if(hall.getSeatRows() < dto.getSeatRow() || dto.getSeatRow() < 1){
+            if(hall.getSeatRows() < dto.getSeatRow() || dto.getSeatRow() < 0){
                 errors.rejectValue("seatRow", "errors.seat.seatRow.invalid");
             }
         }

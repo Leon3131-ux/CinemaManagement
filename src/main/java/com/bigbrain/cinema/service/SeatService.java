@@ -24,4 +24,8 @@ public class SeatService {
         }
     }
 
+    public Seat getByIdOrThrowException(long id){
+        return seatRepository.findById(id).orElseThrow();
+    }
+
 }

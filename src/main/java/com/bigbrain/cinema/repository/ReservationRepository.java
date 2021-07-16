@@ -1,6 +1,6 @@
 package com.bigbrain.cinema.repository;
 
-import com.bigbrain.cinema.domain.Movie;
+import com.bigbrain.cinema.domain.Reservation;
 import com.bigbrain.cinema.domain.Showing;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ShowingRepository extends JpaRepository<Showing, Long> {
+public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    List<Showing> findAllByMovie(Movie movie);
+    List<Reservation> findAllByShowing(Showing showing);
 
 }
