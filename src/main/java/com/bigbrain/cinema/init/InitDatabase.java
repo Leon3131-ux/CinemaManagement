@@ -2,8 +2,9 @@ package com.bigbrain.cinema.init;
 
 import com.bigbrain.cinema.domain.*;
 import com.bigbrain.cinema.repository.*;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -11,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Component
 public class InitDatabase {
 
     private final HallRepository hallRepository;
@@ -24,12 +26,12 @@ public class InitDatabase {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @PostConstruct
+    @PostConstruct()
     private void initDb(){
-        initAgeRatings();
-        initSeatTypes();
-        List<Permission> permissions = initPermissions();
-        initAdminUser(permissions);
+//        initAgeRatings();
+//        initSeatTypes();
+//        List<Permission> permissions = initPermissions();
+//        initAdminUser(permissions);
     }
 
     private Hall initHall(){

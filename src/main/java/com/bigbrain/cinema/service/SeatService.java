@@ -18,7 +18,7 @@ public class SeatService {
         if(optionalOldSeat.isPresent()){
             Seat oldSeat = optionalOldSeat.get();
             oldSeat.setSeatType(seat.getSeatType());
-            return oldSeat;
+            return seatRepository.save(oldSeat);
         }else {
             return seatRepository.save(seat);
         }

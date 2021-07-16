@@ -6,6 +6,8 @@ import com.bigbrain.cinema.repository.HallRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class HallService {
@@ -14,6 +16,10 @@ public class HallService {
 
     public Hall getByIdOrThrowException(long id){
         return hallRepository.findById(id).orElseThrow();
+    }
+
+    public List<Hall> getAll(){
+        return hallRepository.findAll();
     }
 
     public Hall save(Hall hall){

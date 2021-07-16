@@ -13,7 +13,7 @@ public class ReturnSeatDto {
 
     private long hallId;
 
-    private SeatTypeDto seatTypeDto;
+    private SeatTypeDto seatType;
 
     private int seatColumn;
 

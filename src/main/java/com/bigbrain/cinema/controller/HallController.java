@@ -12,10 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -39,6 +36,16 @@ public class HallController {
             hall = hallConverter.toEntity(saveHallDto);
         }
         return new ResponseEntity<>(hallConverter.toDto(hallService.save(hall)), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/hall/getById/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getHallById(@PathVariable("id") Hall hall){
+        return new ResponseEntity<>(hallConverter.toDto(hall), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/hall/getAll", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllHalls(){
+        return new ResponseEntity<>(hallConverter.convertAllToDto(hallService.getAll()), HttpStatus.OK);
     }
 
 }

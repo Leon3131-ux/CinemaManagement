@@ -19,6 +19,6 @@ public class ReturnHallDto {
 
     private int seatColumns;
 
-    private List<ReturnSeatDto> seatsDtos;
+    private List<ReturnSeatDto> seats;
 
 }

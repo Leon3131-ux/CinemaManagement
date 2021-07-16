@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +40,7 @@ public class User extends AbstractEntity{
     @Column(nullable = false)
     private String phoneNumber;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> permissions;
 
 }

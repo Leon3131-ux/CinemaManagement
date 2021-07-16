@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -39,6 +41,10 @@ public class HallConverter {
                 hall.getSeatColumns(),
                 seatConverter.convertAllToDto(hall.getSeats())
         );
+    }
+
+    public List<ReturnHallDto> convertAllToDto(List<Hall> halls){
+        return halls.stream().map(this::toDto).collect(Collectors.toList());
     }
 
 }
