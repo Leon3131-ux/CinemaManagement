@@ -18,6 +18,4 @@ public class SaveMovieDto {
 
     private long ageRatingId;
 
-    private MultipartFile image;
-
 }

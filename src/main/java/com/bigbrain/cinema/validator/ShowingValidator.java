@@ -30,7 +30,7 @@ public class ShowingValidator implements Validator {
     public void validate(Object target, Errors errors) {
         SaveShowingDto dto = (SaveShowingDto) target;
 
-        if(dto.getId() == 0){
+        if(dto.getId() != 0){
             Optional<Showing> oldShowing = showingRepository.findById(dto.getId());
             if(oldShowing.isEmpty()){
                 errors.rejectValue("id", "errors.showing.id.invalid");
