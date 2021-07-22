@@ -11,6 +11,6 @@ public class AgeRatingDto {
 
     private long id;
 
-    private String ageRatingName;
+    private String name;
 
 }

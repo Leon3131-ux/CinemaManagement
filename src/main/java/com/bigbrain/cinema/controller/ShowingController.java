@@ -49,4 +49,9 @@ public class ShowingController {
         return new ResponseEntity<>(showingConverter.convertAllToDto(showingService.getAllByMovie(movie)), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/api/showing/getAllOfToday", method = RequestMethod.GET)
+    public ResponseEntity<?> getShowingsFromToday(){
+        return new ResponseEntity<>(showingConverter.convertAllToDto(showingService.getAllFromToday()), HttpStatus.OK);
+    }
+
 }

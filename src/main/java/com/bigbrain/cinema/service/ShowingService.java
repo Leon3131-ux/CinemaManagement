@@ -7,6 +7,8 @@ import com.bigbrain.cinema.repository.ShowingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -38,6 +40,10 @@ public class ShowingService {
 
     public List<Showing> getAllByMovie(Movie movie){
         return showingRepository.findAllByMovie(movie);
+    }
+
+    public List<Showing> getAllFromToday(){
+        return showingRepository.findAllByDateTimeBetween(LocalDateTime.now(), LocalDateTime.now().toLocalDate().atTime(LocalTime.MAX));
     }
 
 }
