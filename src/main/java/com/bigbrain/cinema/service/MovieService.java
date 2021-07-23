@@ -43,7 +43,7 @@ public class MovieService {
     }
 
     public byte[] getMovieImageBytes(long id){
-        File file = new File(movieImagePath + id);
+        File file = new File(movieImagePath + id + ".jpg");
         byte[] imageBytes;
         try{
             imageBytes = Files.readAllBytes(file.toPath());

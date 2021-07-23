@@ -45,7 +45,7 @@ public class MovieController {
         return new ResponseEntity<>(movieConverter.convertAllToDto(movieService.getAll()), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/api/movie/image/get/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/api/movie/image/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<?> getMovieImage(@PathVariable("id") Movie movie){
         try {
             return new ResponseEntity<>(movieService.getMovieImageBytes(movie.getId()), HttpStatus.OK);
